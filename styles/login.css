@@ -65,3 +65,9 @@
     margin: 0;
     font-size: smaller;
 }
+a{
+    color: white;
+}
+a:hover{
+    color: lightblue;
+}
