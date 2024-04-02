@@ -4,10 +4,10 @@
     padding:0;
 }
 .LoginContainer{
-    background-image:linear-gradient(blue,rgb(36, 36, 255),rgb(0, 0, 190));
+    background-image:linear-gradient(rgb(230, 255, 140),rgb(240, 255, 186),rgb(230, 255, 140));
     width: fit-content;
     height: fit-content;
-    color: white;
+    color: rgb(63, 63, 63);
     font-family:Arial, Helvetica, sans-serif;
     display: block;
     position: absolute;
@@ -18,6 +18,7 @@
     padding: 20px;
     border-radius: 10px;
     font-size: small;
+    box-shadow: 0 0 50px rgba(168, 165, 0, 0.507);
 }
 .LoginContainer h1{
     text-align: center;
@@ -37,10 +38,10 @@
     border-style: none;
     outline: none;
     margin-bottom: 20px;
-    font-size: medium;
+    font-size: 15px;
     font-family: sans-serif;
     border-radius: 5px;
-    background-image: linear-gradient(rgb(241, 241, 241),white, white,white,rgb(240, 240, 240));
+    background-image: linear-gradient(rgba(255, 254, 203, 0),white, white,white,rgba(240, 240, 240, 0));
 }
 .Submit{
     float: right;
@@ -50,15 +51,16 @@
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(255, 255, 255);
-    color: blue;
+    color: rgb(0, 89, 255);
 }
 .Submit:hover{
     transition-duration: 500ms;
     cursor:pointer;
     border-radius: 10px;
     box-shadow: 0 0 10px white;
-    background-color:blue;
+    background-color:rgb(242, 243, 153);
     color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(102, 102, 0, 0.452);
 }
 .left{
     float:left;
@@ -66,8 +68,8 @@
     font-size: smaller;
 }
 a{
-    color: white;
+    color: rgb(0, 174, 255);
 }
 a:hover{
-    color: lightblue;
+    color: rgb(0, 0, 0);
 }
