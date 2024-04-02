@@ -1,0 +1,27 @@
+.LoginList{
+    list-style-type: none;
+    margin: 0;
+    padding:0;
+}
+.LoginContainer{
+    background-image:linear-gradient(blue,rgb(36, 36, 255),rgb(0, 0, 190));
+    width: fit-content;
+    height: fit-content;
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.LoginContainer h1{
+    text-align: center;
+}
+.LoginForm{
+    margin: 0;
+}
+.LoginFormContainer{
+    margin: 20px;
+}
+.ul{
+    margin: 0;
+}
+.li{
+    margin: 0;
+}
