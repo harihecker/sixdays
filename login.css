@@ -9,6 +9,15 @@
     height: fit-content;
     color: white;
     font-family:Arial, Helvetica, sans-serif;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: small;
 }
 .LoginContainer h1{
     text-align: center;
@@ -23,6 +32,31 @@
     margin: 0;
     padding:0
 }
-.li{
-    margin: 0;
+.TextBox{
+    height:30px;
+    border-style: none;
+    outline: none;
+    margin-bottom: 20px;
+    font-size: medium;
+    font-family: sans-serif;
+    border-radius: 5px;
+    background-image: linear-gradient(rgb(241, 241, 241),white, white,white,rgb(240, 240, 240));
+}
+.Submit{
+    float: right;
+    box-shadow: none;
+    border: none;
+    height: 30px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(255, 255, 255);
+    color: blue;
+}
+.Submit:hover{
+    transition-duration: 500ms;
+    cursor:pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px white;
+    background-color:blue;
+    color: rgb(255, 255, 255);
 }
