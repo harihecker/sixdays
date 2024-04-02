@@ -60,3 +60,8 @@
     background-color:blue;
     color: rgb(255, 255, 255);
 }
+.left{
+    float:left;
+    margin: 0;
+    font-size: smaller;
+}
