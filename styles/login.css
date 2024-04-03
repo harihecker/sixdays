@@ -1,4 +1,4 @@
-.LoginList{
+ul{
     list-style-type: none;
     margin: 0;
     padding:0;
@@ -33,7 +33,7 @@
     margin: 0;
     padding:0
 }
-.TextBox{
+#Username,#Password,#CPassword{
     height:30px;
     border-style: none;
     outline: none;
@@ -43,7 +43,7 @@
     border-radius: 5px;
     background-image: linear-gradient(rgba(255, 254, 203, 0),white, white,white,rgba(240, 240, 240, 0));
 }
-.Submit{
+#loginbutton{
     float: right;
     box-shadow: none;
     border: none;
@@ -51,16 +51,17 @@
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(255, 255, 255);
-    color: rgb(0, 89, 255);
+    color: rgb(200, 255, 0);
+    border-radius: 5px;
 }
-.Submit:hover{
+#loginbutton:hover{
     transition-duration: 500ms;
     cursor:pointer;
     border-radius: 10px;
     box-shadow: 0 0 10px white;
     background-color:rgb(242, 243, 153);
     color: rgb(255, 255, 255);
-    box-shadow: 0 0 10px rgba(102, 102, 0, 0.452);
+    box-shadow: 0 0 10px rgba(255, 255, 61, 0.164);
 }
 .left{
     float:left;
@@ -68,8 +69,8 @@
     font-size: smaller;
 }
 a{
-    color: rgb(0, 174, 255);
+    color: rgb(0, 0, 0);
 }
 a:hover{
-    color: rgb(0, 0, 0);
+    color: rgb(105, 255, 45);
 }
