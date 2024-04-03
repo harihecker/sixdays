@@ -10,27 +10,27 @@
     <div class="LoginContainer">
         <h1>LOGIN</h1>
         <div class="LoginFormContainer">
-            <table class="LoginForm">
-                <ul class="LoginList">
-                    <li>
+            <form class="LoginForm">
+                <div>
+                <ul>
                         <label for="Username">Email or Username</label>
-                    </li>
-                    <li>
-                        <input type="text" id="Username" class="TextBox">
-                    </li>
-                    <li>
+                <li>
+                        <input type="text" id="Username">
+                </li>    
                         <label for="Password">Password</label>
-                    </li>
-                    <li>
-                        <input type="password" id="Password" class="TextBox">
-                    </li>
-                    <li>
+                <li>                      
+                        <input type="password" id="Password">
+                </li>  
+                <li>
                         <p class="left">Don't have an account? <br><a href="signup.html">Register here</a></p>
-                        <input type="submit" value="Login" class="Submit">
-                    </li>
+                        <button type="submit" id="loginbutton" value="Login">Login</button>
+                </li>
                 </ul>
-            </table>
+                   </div>
+            </form>
         </div>
     </div>
+	 <script src="login.js"></script>
 </body>
 </html>
+
