@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feautures</title>
+    <script src="https://kit.fontawesome.com/f855cf7cd9.js" crossorigin="anonymous"></script>  
+      <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'popins', sans-serif;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            padding: 0 8%;
+        }
+        .container h1{
+            text-align: center;
+            padding-top: 10%;
+            margin-bottom: 60px;
+            font-weight: 600;
+            position: relative;
+        }
+        .container h1::after{
+            content: '';
+            background: #277f21;
+            width: 100px;
+            height: 5px;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform:translate(-50%);
+
+        }
+        .row{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            grid-gap: 30px;
+
+        }
+        .service{
+            text-align: center;
+            padding: 25px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            background:transparent;
+            transition: transform 0.5s,background 0.5s;
+        }
+        .service i{
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #277f21;
+        }
+        .service h2{
+            font-weight: 600;
+            margin-bottom: 8px;
+
+        }
+        .service:hover{
+            background:#277f21;
+            color: #fff;
+            transform: scale(1.05);
+
+        }
+        .service:hover i{
+            color: #fff;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Features</h1>
+        <div class="row">
+            <div class="service">
+                <i class="fa-solid fa-chart-line"></i>                
+                <h2>Track Your Investments</h2>
+                <p>hello oooo</p>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-cart-shopping"></i>
+               <h2>Buying stocks</h2>
+                <p>hello oooo</p>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-money-check-dollar"></i>                
+                <h2>selling stocks</h2>
+                <p>hello oooo</p>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-cart-shopping"></i>
+               <h2>View stocks</h2>
+                <p>hello oooo</p>
+            </div>
+           
+        </div>
+
+    </div>
+</body>
+</html>
