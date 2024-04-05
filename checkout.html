@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <!-- Custom CSS -->
-    <style>
+   <style>
         /* Your custom CSS styles here */
         .TransactionContainer {
             background-color: lightblue;
@@ -15,13 +14,38 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+        button {
+            margin-top: 20px;
+        }
+        button{
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #345bc7;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color:#6790ff;
+        }
+        h1{
+            text-align: center;
+            padding-top: 5%;
+            margin-bottom: 60px;
+            font-weight: 600;
+            position: relative;
+
+        }
+
     </style>
 </head>
 <body>
-<div class="TransactionContainer">
-    <h1 class="text-center mb-4">
+<h1 class="text-center mb-4">
         CONFIRM YOUR TRANSACTION
     </h1>
+<div class="TransactionContainer">
+    
     <table class="table">
         <tr>
             <td><h2>Ticker</h2></td>
@@ -41,11 +65,11 @@
         </tr>
     </table>
     <form id="checkoutForm" action="/checkedout" method="post">
-        <input type="hidden" name="ticker" value="${ticker}">
-        <input type="hidden" name="name" value="${name}">
+        <input type="hidden" name="ticker" id="hiddenTicker">
+        <input type="hidden" name="name" id="hiddenName">
         <!-- Set the value of the 'price' input field to the JavaScript variable 'price' -->
         <input type="hidden" name="price" id="hiddenPrice">
-        <input type="hidden" name="exchange" value="${exchange}">
+        <input type="hidden" name="exchange" id="hiddenExchange">
         <button type="submit" name="submit">Proceed to buy</button>
     </form>
 </div>
@@ -56,7 +80,7 @@
 
     // Get values from URL parameters
     const ticker = urlParams.get('ticker');
-    const name = urlParams.get('name');
+    const name = String(urlParams.get('name'));
     const price = parseFloat(urlParams.get('price')); // Parse 'price' as a float
     const exchange = urlParams.get('exchange');
 
@@ -68,6 +92,9 @@
 
     // Set the value of the hidden input field to the 'price' variable
     document.getElementById('hiddenPrice').value = price;
+    document.getElementById('hiddenTicker').value = ticker;
+    document.getElementById('hiddenName').value = name;
+    document.getElementById('hiddenExchange').value = exchange;
 </script>
 
 </body>
