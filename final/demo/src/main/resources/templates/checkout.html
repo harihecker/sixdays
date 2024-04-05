@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        .TransactionContainer {
+            background-color: lightblue;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="TransactionContainer">
+        <h1 class="text-center mb-4">
+            CONFIRM YOUR TRANSACTION
+        </h1>
+        <table class="table">
+            <tr>
+                <td><h2>Ticker</h2></td>
+                <td><h2 id="ticker">Loading...</h2></td>
+            </tr>
+            <tr>
+                <td><h2>Name</h2></td>
+                <td><h2 id="name">Loading...</h2></td>
+            </tr>
+            <tr>
+                <td><h2>Price</h2></td>
+                <td><h2 id="price">Loading...</h2></td>
+            </tr>
+            <tr>
+                <td><h2>Exchange</h2></td>
+                <td><h2 id="exchange">Loading...</h2></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Update the details dynamically
+        var tickerValue = getUrlParameter('ticker') || 'No ticker specified';
+        var nameValue = getUrlParameter('name') || 'No name specified';
+        var priceValue = getUrlParameter('price') || 'No price specified';
+        var exchangeValue = getUrlParameter('exchange') || 'No exchange specified';
+
+        document.getElementById('ticker').innerText = tickerValue;
+        document.getElementById('name').innerText = nameValue;
+        document.getElementById('price').innerText = priceValue;
+        document.getElementById('exchange').innerText = exchangeValue;
+    </script>
+</body>
+</html>

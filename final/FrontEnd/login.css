@@ -1,0 +1,76 @@
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding:0;
+}
+.LoginContainer{
+    background-image:linear-gradient(rgb(230, 255, 140),rgb(240, 255, 186),rgb(230, 255, 140));
+    width: fit-content;
+    height: fit-content;
+    color: rgb(63, 63, 63);
+    font-family:Arial, Helvetica, sans-serif;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: small;
+    box-shadow: 0 0 50px rgba(168, 165, 0, 0.507);
+}
+.LoginContainer h1{
+    text-align: center;
+}
+.LoginForm{
+    margin: 0;
+}
+.LoginFormContainer{
+    margin: 20px;
+}
+.ul{
+    margin: 0;
+    padding:0
+}
+#Username,#Password,#CPassword{
+    height:30px;
+    border-style: none;
+    outline: none;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    background-image: linear-gradient(rgba(255, 254, 203, 0),white, white,white,rgba(240, 240, 240, 0));
+}
+#loginbutton{
+    float: right;
+    box-shadow: none;
+    border: none;
+    height: 30px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(255, 255, 255);
+    color: rgb(200, 255, 0);
+    border-radius: 5px;
+}
+#loginbutton:hover{
+    transition-duration: 500ms;
+    cursor:pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px white;
+    background-color:rgb(242, 243, 153);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(255, 255, 61, 0.164);
+}
+.left{
+    float:left;
+    margin: 0;
+    font-size: smaller;
+}
+a{
+    color: rgb(0, 0, 0);
+}
+a:hover{
+    color: rgb(105, 255, 45);
+}
