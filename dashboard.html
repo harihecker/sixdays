@@ -17,43 +17,43 @@
 </head>
 <style>
     .StockGrid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        grid-gap: 40px;
-        margin: 20px;
-    }
-    li:hover{
-        background-color:#6790ff;
-        border-radius:10px;
-        transition-duration:400ms;
-    }
-    body {
-        padding: 0;
-        background-image: url("bg.jpg");
-        background-size:cover;
-        background-repeat: no-repeat;
-        margin: 0;
-    }
-    .StockItem {
-        padding: 10px;
-        background-color: #ffffff;
-        color: rgb(0, 0, 0);
-        border-radius: 15px;
-    }
-    .StockItem:hover{
-        background-color: #6790ff;
-        color: white;
-        cursor: pointer;
-        transition-duration: 300ms;
-    }
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 40px;
+            margin: 20px;
+        }
+        li:hover{
+            background-color:#6790ff;
+            border-radius:10px;
+            transition-duration:400ms;
+        }
+body {
+            padding: 0;
+            background-image: url("bg.jpg");
+            background-size:cover;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+        .StockItem {
+            padding: 10px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border-radius: 15px;
+        }
+        .StockItem:hover{
+            background-color: #6790ff;
+            color: white;
+            cursor: pointer;
+            transition-duration: 300ms;
+        }
     h1{
-        text-align: center;
-        padding: 5%;
-        font-weight: 600;
-        background-color: white;
-        margin:auto;
+            text-align: center;
+            padding: 5%;
+            font-weight: 600;
+            background-color: white;
+            margin:auto;
 
-    }
+        }
 
 </style>
 
@@ -69,7 +69,7 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/features">Features</a>
@@ -86,7 +86,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
                 </li>
             </ul>
             <form class="d-flex" role="search" id="searchForm">
@@ -171,33 +174,33 @@
 
 
     stockGrid.on('click', '.StockItem', function () {
-        const ticker = $(this).find('h3').text().match(/\((.*?)\)/)[1];
-        const name = $(this).find('h3').text().split('(')[0].trim(); // Extracting name from the h3 element
-        const price = $(this).find('p').eq(0).text().split('$')[1]; // Extracting price from the first paragraph element
-        const exchange = $(this).find('p').eq(1).text().split(': ')[1]; // Extracting exchange from the second paragraph element
+    const ticker = $(this).find('h3').text().match(/\((.*?)\)/)[1];
+    const name = $(this).find('h3').text().split('(')[0].trim(); // Extracting name from the h3 element
+    const price = $(this).find('p').eq(0).text().split('$')[1]; // Extracting price from the first paragraph element
+    const exchange = $(this).find('p').eq(1).text().split(': ')[1]; // Extracting exchange from the second paragraph element
 
-        redirectToCheckout(ticker, name, price, exchange);
-    });
+    redirectToCheckout(ticker, name, price, exchange);
+});
 
 
 
-    function redirectToCheckout(ticker, name, price, exchange) {
-        const queryString = `?ticker=${ticker}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)+"USD"}&exchange=${encodeURIComponent(exchange)}`;
-        window.location.href = "/checkout" + queryString;
-    }
+   function redirectToCheckout(ticker, name, price, exchange) {
+    const queryString = `?ticker=${ticker}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)+"USD"}&exchange=${encodeURIComponent(exchange)}`;
+    window.location.href = "/checkout" + queryString;
+}
 
 
     $('#searchForm').submit(function (event) {
-        event.preventDefault(); // Prevent default form submission
-        const searchInput = $('#searchInput').val().toUpperCase(); // Get the entered ticker symbol
-        fetchStockInfo(searchInput)
-            .done(function (result) {
-                displayStockInfo(result); // Display stock information
-            })
-            .fail(function (jqXHR) {
-                console.error('Error fetching stock information:', jqXHR.responseText);
-            });
-    });
+    event.preventDefault(); // Prevent default form submission
+    const searchInput = $('#searchInput').val().toUpperCase(); // Get the entered ticker symbol
+    fetchStockInfo(searchInput)
+        .done(function (result) {
+            displayStockInfo(result); // Display stock information
+        })
+        .fail(function (jqXHR) {
+            console.error('Error fetching stock information:', jqXHR.responseText);
+        });
+});
 </script>
 </body>
 
