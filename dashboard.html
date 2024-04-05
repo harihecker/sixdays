@@ -5,37 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
 </head>
 <style>
     .StockGrid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        grid-gap: 10px;
+        grid-gap: 40px;
         margin: 20px;
     }
-
+    li:hover{
+        background-color:#6790ff;
+        border-radius:10px;
+        transition-duration:400ms;
+    }
+    body {
+        padding: 0;
+        background-image: url("bg.jpg");
+        background-size:cover;
+        background-repeat: no-repeat;
+        margin: 0;
+    }
     .StockItem {
-        border: 1px solid #ccc;
         padding: 10px;
-    }</style>
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        border-radius: 15px;
+    }
+    .StockItem:hover{
+        background-color: #6790ff;
+        color: white;
+        cursor: pointer;
+        transition-duration: 300ms;
+    }
+    h1{
+        text-align: center;
+        padding: 5%;
+        font-weight: 600;
+        background-color: white;
+        margin:auto;
+
+    }
+
+</style>
 
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+
+        <a class="navbar-brand" href="#">CyberStocks</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="/features">Features</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,65 +89,114 @@
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" id="searchForm">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+
         </div>
     </div>
 </nav>
-<!--nav ends-->
 
-
+<h1>Popular Stocks</h1>
 <div class="StockGrid" id="stockGrid"></div>
 
-<!-- Include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        // Array of ticker symbols
-        const tickerSymbols = [
-            'AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NVDA', 'PYPL', 'INTC', 'ADBE',
-            'NFLX', 'CMCSA', 'CSCO', 'PEP', 'INTU', 'AVGO', 'TMUS', 'AMAT', 'TXN', 'QCOM'
-        ];
+    // Function to fetch stock information for a symbol
+    function fetchStockInfo(symbol) {
+        return $.ajax({
+            method: 'GET',
+            url: 'https://api.api-ninjas.com/v1/stockprice?ticker=' + symbol,
+            headers: { 'X-Api-Key': 'uwdKB/Yja7yt8I1pFV8tTA==laeeGme26RrdNp2y' }, // Replace 'YOUR_API_KEY' with your actual API key
+            contentType: 'application/json'
+        });
+    }
 
-        // Function to fetch stock information for a symbol
-        function fetchStockInfo(symbol) {
-            return $.ajax({
-                method: 'GET',
-                url: 'https://api.api-ninjas.com/v1/stockprice?ticker=' + symbol,
-                headers: { 'X-Api-Key': 'uwdKB/Yja7yt8I1pFV8tTA==laeeGme26RrdNp2y' }, // Replace 'YOUR_API_KEY' with your actual API key
-                contentType: 'application/json'
+    // Display stock information for multiple symbols randomly
+    const stockGrid = $('#stockGrid');
+    const promises = [];
+    const tickerSymbols = [
+        'AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NVDA', 'PYPL', 'INTC', 'ADBE',
+        'NFLX', 'CMCSA', 'CSCO', 'PEP', 'INTU', 'AVGO', 'TMUS', 'AMAT', 'TXN', 'QCOM',
+        'BLW', 'BLX', 'BMA', 'BME', 'BMI', 'BML-G', 'BML-H', 'BML-I', 'BML-L', 'BMO',
+        'BMR', 'BMS', 'BMY', 'BNA', 'BNJ', 'BNNY', 'BNS', 'BNY', 'BOE', 'BOH', 'BOI',
+        'BORN', 'BOXC', 'BP', 'BPI', 'BPK', 'BPL', 'BPO', 'BPT', 'BPY', 'BPZ', 'BQH',
+        'BQR', 'BR', 'BRC', 'BRE', 'BRE-D', 'BRFS', 'BRK.A', 'BRK.B', 'BRO', 'BRP',
+        'BRS', 'BRSS', 'BRT', 'BRY', 'CB', 'CBA', 'CBB', 'CBB-B', 'CBD', 'CBG', 'CBI',
+        'CBK', 'CBL', 'CBL-D', 'CBL-E', 'CBM', 'CBO', 'CBR', 'CBS', 'CBS.A', 'CBT',
+        'CBU', 'CBX', 'CBZ', 'CCC', 'CCE', 'CCG', 'CCG-A', 'CCH', 'CCI', 'CCJ', 'CCK',
+        'CCL', 'CCM', 'CCO', 'CCSC', 'CCU', 'CCV', 'CCZ', 'CDE', 'CDE.W', 'CDI', 'CDR',
+        'CDR-B', 'CE', 'CEA', 'CEB', 'CEC', 'CEE', 'CEM', 'CEO', 'CF', 'CFC-A', 'CFC-B',
+        'CFI', 'CFN', 'CFR'
+    ];
+    function fetchAndDisplayStockInfo() {
+        if (promises.length >= 25) {
+            // Handle responses from API calls
+            $.when.apply($, promises).then(function () {
+                for (let i = 0; i < arguments.length; i++) {
+                    const result = arguments[i][0];
+                    if (!result.name) continue; // Skip if stock information is undefined
+                    const stockItem = $('<div>').addClass('StockItem');
+                    stockItem.html(`
+                        <h3>${result.name} (${result.ticker})</h3>
+                        <p>Price: $${result.price}</p>
+                        <p>Exchange: ${result.exchange}</p>
+
+                    `);
+                    stockGrid.append(stockItem);
+                }
+            }).fail(function (jqXHR) {
+                console.error('Error fetching stock information:', jqXHR.responseText);
             });
-        }
-
-        // Display stock information for multiple symbols randomly
-        const stockGrid = $('#stockGrid');
-        const promises = [];
-        for (let i = 0; i < 5; i++) {
+        } else {
             const randomIndex = Math.floor(Math.random() * tickerSymbols.length);
             const symbol = tickerSymbols[randomIndex];
+            tickerSymbols.splice(randomIndex, 1); // Remove the selected symbol from the array to avoid repetition
             const promise = fetchStockInfo(symbol);
             promises.push(promise);
+            promise.then(function (result) {
+                if (!result.name) {
+                    // If stock information is undefined, fetch another stock info
+                    promises.pop();
+                    fetchAndDisplayStockInfo();
+                }
+            });
+            fetchAndDisplayStockInfo();
         }
+    }
 
-        // Handle responses from API calls
-        $.when.apply($, promises).then(function() {
-            for (let i = 0; i < arguments.length; i++) {
-                const result = arguments[i][0];
-                const stockItem = $('<div>').addClass('StockItem');
-                stockItem.html(`
-                    <h3>${result.name} (${result.ticker})</h3>
-                    <p>Price: $${result.price}</p>
-                    <p>Exchange: ${result.exchange}</p>
-                    <p>Last Updated: ${new Date(result.updated * 1000).toLocaleString()}</p>
-                `);
-                stockGrid.append(stockItem);
-            }
-        }).fail(function(jqXHR) {
-            console.error('Error fetching stock information:', jqXHR.responseText);
-        });
+    fetchAndDisplayStockInfo();
+
+
+    stockGrid.on('click', '.StockItem', function () {
+        const ticker = $(this).find('h3').text().match(/\((.*?)\)/)[1];
+        const name = $(this).find('h3').text().split('(')[0].trim(); // Extracting name from the h3 element
+        const price = $(this).find('p').eq(0).text().split('$')[1]; // Extracting price from the first paragraph element
+        const exchange = $(this).find('p').eq(1).text().split(': ')[1]; // Extracting exchange from the second paragraph element
+
+        redirectToCheckout(ticker, name, price, exchange);
+    });
+
+
+
+    function redirectToCheckout(ticker, name, price, exchange) {
+        const queryString = `?ticker=${ticker}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)+"USD"}&exchange=${encodeURIComponent(exchange)}`;
+        window.location.href = "/checkout" + queryString;
+    }
+
+
+    $('#searchForm').submit(function (event) {
+        event.preventDefault(); // Prevent default form submission
+        const searchInput = $('#searchInput').val().toUpperCase(); // Get the entered ticker symbol
+        fetchStockInfo(searchInput)
+            .done(function (result) {
+                displayStockInfo(result); // Display stock information
+            })
+            .fail(function (jqXHR) {
+                console.error('Error fetching stock information:', jqXHR.responseText);
+            });
     });
 </script>
 </body>

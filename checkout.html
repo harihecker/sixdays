@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <style>
+        /* Your custom CSS styles here */
         .TransactionContainer {
             background-color: lightblue;
             width: 50%;
@@ -18,51 +18,46 @@
     </style>
 </head>
 <body>
-    <div class="TransactionContainer">
-        <h1 class="text-center mb-4">
-            CONFIRM YOUR TRANSACTION
-        </h1>
-        <table class="table">
-            <tr>
-                <td><h2>Ticker</h2></td>
-                <td><h2 id="ticker">Loading...</h2></td>
-            </tr>
-            <tr>
-                <td><h2>Name</h2></td>
-                <td><h2 id="name">Loading...</h2></td>
-            </tr>
-            <tr>
-                <td><h2>Price</h2></td>
-                <td><h2 id="price">Loading...</h2></td>
-            </tr>
-            <tr>
-                <td><h2>Exchange</h2></td>
-                <td><h2 id="exchange">Loading...</h2></td>
-            </tr>
-        </table>
-    </div>
+<div class="TransactionContainer">
+    <h1 class="text-center mb-4">
+        CONFIRM YOUR TRANSACTION
+    </h1>
+    <table class="table">
+        <tr>
+            <td><h2>Ticker</h2></td>
+            <td><h2 id="ticker">Loading...</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Name</h2></td>
+            <td><h2 id="name">Loading...</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Price</h2></td>
+            <td><h2 id="price">Loading...</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Exchange</h2></td>
+            <td><h2 id="exchange">Loading...</h2></td>
+        </tr>
+    </table>
+</div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Function to get URL parameters
-        function getUrlParameter(name) {
-            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
+<script>
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
 
-        // Update the details dynamically
-        var tickerValue = getUrlParameter('ticker') || 'No ticker specified';
-        var nameValue = getUrlParameter('name') || 'No name specified';
-        var priceValue = getUrlParameter('price') || 'No price specified';
-        var exchangeValue = getUrlParameter('exchange') || 'No exchange specified';
+    // Get values from URL parameters
+    const ticker = urlParams.get('ticker');
+    const name = urlParams.get('name');
+    const price = urlParams.get('price');
+    const exchange = urlParams.get('exchange');
 
-        document.getElementById('ticker').innerText = tickerValue;
-        document.getElementById('name').innerText = nameValue;
-        document.getElementById('price').innerText = priceValue;
-        document.getElementById('exchange').innerText = exchangeValue;
-    </script>
+    // Update table elements with values
+    document.getElementById('ticker').textContent = ticker;
+    document.getElementById('name').textContent = name;
+    document.getElementById('price').textContent = price;
+    document.getElementById('exchange').textContent = exchange;
+</script>
+
 </body>
 </html>
