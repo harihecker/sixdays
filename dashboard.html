@@ -24,6 +24,18 @@
             width: auto;
             margin: auto;
         }
+
+        .StockGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+            margin: 20px;
+        }
+
+        .StockItem {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -42,6 +54,58 @@
             Signout
         </div>
     </div>
+
+    <div class="StockGrid" id="stockGrid"></div>
+
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Array of ticker symbols
+            const tickerSymbols = [
+                'AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NVDA', 'PYPL', 'INTC', 'ADBE',
+                'NFLX', 'CMCSA', 'CSCO', 'PEP', 'INTU', 'AVGO', 'TMUS', 'AMAT', 'TXN', 'QCOM'
+            ];
+
+            // Function to fetch stock information for a symbol
+            function fetchStockInfo(symbol) {
+                return $.ajax({
+                    method: 'GET',
+                    url: 'https://api.api-ninjas.com/v1/stockprice?ticker=' + symbol,
+                    headers: { 'X-Api-Key': 'uwdKB/Yja7yt8I1pFV8tTA==laeeGme26RrdNp2y' }, // Replace 'YOUR_API_KEY' with your actual API key
+                    contentType: 'application/json'
+                });
+            }
+
+            // Display stock information for multiple symbols randomly
+            const stockGrid = $('#stockGrid');
+            const promises = [];
+            for (let i = 0; i < 25; i++) { 
+                const randomIndex = Math.floor(Math.random() * tickerSymbols.length);
+                const symbol = tickerSymbols[randomIndex];
+                const promise = fetchStockInfo(symbol);
+                promises.push(promise);
+            }
+
+            // Handle responses from API calls
+            $.when.apply($, promises).then(function() {
+                for (let i = 0; i < arguments.length; i++) {
+                    const result = arguments[i][0];
+                    const stockItem = $('<div>').addClass('StockItem');
+                    stockItem.html(`
+                        <h3>${result.name} (${result.ticker})</h3>
+                        <p>Price: $${result.price}</p>
+                        <p>Exchange: ${result.exchange}</p>
+                        <p>Last Updated: ${new Date(result.updated * 1000).toLocaleString()}</p>
+                    `);
+                    stockGrid.append(stockItem);
+                }
+            }).fail(function(jqXHR) {
+                console.error('Error fetching stock information:', jqXHR.responseText);
+            });
+        });
+    </script>
 </body>
 
 </html>
