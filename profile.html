@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .positive {
+            color: green;
+        }
+
+        .negative {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-5">Profile</h1>
+    <table class="mb-5">
+        <tbody>
+        <tr th:each="users : ${user}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered" id="portfolio">
+        <thead>
+        <tr>
+            <th>Ticker</th>
+            <th>Number of shares</th>
+            <th>Total cost</th>
+            <th>Current price</th>
+            <th>Portfolio percent change</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<tr th:each="stock : ${stockList}">
+    <td th:text="${stock.ticker}"></td>
+    <td th:text="${stock.shares}"></td>
+    <td th:text="${stock.totalCost}"></td>
+    <td th:text="${stock.currentPrice}"></td>
+    <td th:class="${stock.portfolioPercentChange > 0? 'hike' : 'drop'}" th:text="${{stock.portfolioPercentChange}} + '%'"></td>
+</tr>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .positive {
+            color: green;
+        }
+
+        .negative {
+            color: red;
+        }
+    </style>
+</html>
